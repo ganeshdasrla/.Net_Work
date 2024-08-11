@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace SOLID
 {
-    internal class _5_DIP
+    internal class DIP
     {
     }
     //DIP: Dependency Inversion Principle
     //DIP suugest that high level modules should not depend on low-level modules, but both should depend on abstractions.
     //Additionally, abstraction should not depend on details, details should depend on abstractions
+
+    //Entities/Classes should depend on abstraction and not on concrete classes.
 
     //High-level modules should not depend on low-level modules, both should depend on abstractions.
 

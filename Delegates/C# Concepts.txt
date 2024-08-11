@@ -1,0 +1,99 @@
+
+Enum:
+	- It is user-defined data type with a fixed set of possible values.
+
+Struct:
+	- It is user-defined type in C#, which holds a set of variables.
+	- It is a light weight class with limited functionalities 
+	- A struct can't declare a default constructor, Done by CLR
+	- struct can't inherit another struct or class
+	- it implements interface
+
+Composition:
+	- It is design principle where a class is composed of one or more objects, rather than inherting from another class.
+	- It promotes the idea of "has-a" relationship rather than "is-a" relationships.
+
+
+** Use inheritance when there is a clear hierarchical relationship and shared behavior
+** Use interfaces to define common capabilities and promote polymorphism
+** Use composition to create flexible and reusable design by combinig objects
+
+- Take example of Flyable class -> with Fly() which inherited from Duck, Eagale Classes --- Inheritance
+- Now class Plane, which need Fly() method, rather inheriting, will cretae object Flyable and use Fly() --- Composition
+
+** when its a [is-a] relation go for Inheritance
+** when its a [has-a] raltion go for Composition
+
+Dependency Injection (DI):
+	- Its a design pattern that allows classes to receive thier dependencise(injected) rather than creating them.
+	- Promotes decoulping, improves testability
+
+	Types of DI:
+		1. constructor injection: 
+			- dependencies are passed to a class through constructor.
+			- this ensures class has all required dependencies to function correctly from the moment of instantiation
+			
+				private readonly IEmailService _emailService;
+				// Constructor injection
+				public NotificationService(IEmailService emailService)
+				{
+				_emailService = emailService;
+				}
+
+		2. property injection: 
+			- dependencies are set through public properties of class.
+			- allows optional dependencies and supports lazy initialization
+
+				// Property to inject the email service
+				public IEmailService EmailService { get; set; }
+
+		3. method injection
+			- dependencies are passed to a method when it is called.
+			- useful when menthod requires certain dependencies foe specific operation
+
+				// Method that requires the email service dependency to be passed
+				public void SendNotification(IEmailService emailService, string recipient, string message)
+				{
+					// Logic to process and send notifications
+					emailService.SendEmail(recipient, "Notification", message);
+				}
+
+Inversion of Control (IOC):
+	- its a design pattern that emphasizes decoupling and shifting control of object creation from class to external entiry, typically IoC container.
+	- so classes become more modular, as they don't need to know how to crate their dependencies
+
+
+Delegates:
+	- Type safe function pointers that allow methods to be passed as parameters
+
+	syntax:
+		public delegate ReturnType DelegateName(ParameterType1 parameter1, ParameterType2 parameter2, ...);
+
+		// Define a delegate for logging
+		public delegate void LogHandler(string message);
+
+Multicast Delegates:
+	- This holds references to multiple methods.
+	- When invoked, a multicast delegate calls all the methods it holds in sequence.
+	
+
+Real-World Use Cases:
+	- Delegates are commonly used for event handling in C#
+	
+	1. Button Click Event:
+		public delegate void ButtonClickHandler(object sender, EventArgs e);
+		Button button = new Button();
+		button.Click += new ButtonClickHandler(ButtonClicked);
+
+	2. Callback Mechanisms:
+		- Delegates are often used to implement callback mechanisms. 
+		- A callback is a method that is passed as an argument to another method and is invoked when a specific event or condition occurs.
+
+		Example: Asynchronous Data Fetching
+
+
+Events:
+	- Built on delegates, allowing a class to notify another classes when somthing happens
+
+Real-world Example: 
+	- Logging system using events to notify different logging mechanisms (console, file, remote server).

@@ -46,11 +46,11 @@ Types:
 
 SINGLETON PATTERN: -> Creational Type Pattern
 ------------------
-- Ensure that only object is created across the application
+- Ensure that only one object is created across the application
 - It controls concurrent access to the resourcse
 - It ensures there is only one object availabe across the application in a controlled state
 
-- In Multi threading, use lock on object instanciation logic that way it won't create multiple objects
+- In Multi threading, use lock on object instantiation logic that way it won't create multiple objects
 
 1. Classic Singleton
 2. Thread Safe Singleton
@@ -96,7 +96,7 @@ FACTORY DESIGN PATTERN: [creatinal pttern]
 -----------------------
 Define an interface for creating object, but let subclasses decide which class to instantiate. 
 - creates object without exposing the creation logic to client and refer to newly created object using common interface.
-- It provides a factory, request factorty crate object instead of directly creating
+- It provides a factory, request factorty create object instead of directly creating
 
 - Factory pattern creates object without exposing the creation logic to client and refer to newly created object using a common interface.
 
@@ -134,13 +134,13 @@ Problem:
 
 *** The builder patterns simplifies object creation by seperation the construction process from the actual representaion. ***
 
---- The builder pattern helps you to create complex objects step by step, instead of all at once. 
+*** The builder pattern helps you to create complex objects step by step, instead of all at once. 
 	It makes code easier to understand and modify, especially when the object has many parts or options.
 
 
 Solution:
-	The builder pattern solves the by dividing the construction process into smaller, manageale steps.
-	Instead of passing all parameters at once, you create the object stp by step, setting each part separattely
+	The builder pattern solves by dividing the construction process into smaller, manageale steps.
+	Instead of passing all parameters at once, you create the object step by step, setting each part separattely
 
 	Here’s how it works:
 

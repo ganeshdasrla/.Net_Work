@@ -36,6 +36,8 @@ namespace SOLID
             fruit = new Orange();
             Console.WriteLine(fruit.GetColor());
 
+
+            //LSP 
             IFlyable fly = new Bird();
             fly.Fly();
             fly = new Penguin();
@@ -45,6 +47,7 @@ namespace SOLID
     }
     //LSP: Liskov Substitution Principle
     //LSP states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program
+    //Subclass/Child class can be substituted for thier base/parent class.
 
     //You should be able to use any subclass where you use its parent class.
 

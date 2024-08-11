@@ -1,0 +1,270 @@
+=====================================Multithreading & Best practices========================================
+
+Threads in CPU:
+--------------
+	The CPU is the Brain, responsible for executing all instructions needed to run application
+
+			instructions ----> CPU ------> instructions processed
+
+	-	Modren computer often have multiple cores,
+	-	Eeach processor can be divided into two logical processor
+	-	Eg: A 4-core processor can handle 8 threads in parallel (use of hyper threading tchnology)
+
+Scheduler:
+	It determines the order and time frames(known as processor time slices) in which the processor will execute instructions.
+
+Processor Time Slices:
+	Its given time period in which the processor handles specific instructions.
+	To prevent long instructions from blocking the entire computer, each instruction is given specific time slice.
+
+Process:
+	- Porcess is the instance that exceute your program
+	- Has its own memory space and resources
+	- Operates independently of other processes
+	- Can contain one to many threads, each process acts as container for threads
+
+Thread:
+	- An execution unit within a process/ lowest unit of work of a CPU
+	- Each has its own stack
+	- Shares heap memory with other threads within the same process
+
+
+** Mulithreading is the ability for a program to execute multiple threads allowing for efficeint utilisation of the system resources.
+
+Concurrency:
+	- when two or more tasks can start, run and complete in overlapping time periods.
+	- Enables a single thread to handle multiple tasks by switching rapidely b/w them, giving illusion of simultaneous execution.
+
+Parallelism:
+	- When two or more tasks run at the same time on different threads
+	- Two tasks executed by two threads
+
+Synchronous:
+	- Tasks are executed one after the other
+	- Can leads to inefficiencies if one task takes too long, therfore freezing or blocking the app until the task is complete.
+
+Asynchronous(Single Thread):
+	- A single thread handles multiple tasks by switching b/w them
+	- Allows tasks to progress concurrently without blocking the flow
+
+Asynchronous(Multiple Thread):
+	- Multiple threads handle different tasks simultaneously
+	- Allows both/more tasks to be completed more quickly and efficiently
+
+Benifits of using Multithreading in C#:
+======================================
+
+Performance:
+	- Make use of the hardware capability
+	- speed-up the execution by running tasks in parallel.
+
+Responsiveness:
+	- By running multiple processes at the same time, when use clicks to retrive data, the whole app remains responsive
+		even though other thread is busy fetching the data.
+
+Scalability:
+	- Handling more and more requets is made easy by processing them simultaneously using different threads for each task.
+
+Thread Lifecycle:
+	- Thread crated
+	- Thread starts
+	- Thread completes method
+	- Thread automatically ends
+
+Thread.Join:
+	- Used to block the calling(main) thread until the thread(thread1) on which 'Join' is called has completed.
+
+		Thread thread = new Thread(WorkMethod);
+		thread.Start();
+
+		// The calling thread will wait here until 'thread' completes its execution
+		thread.Join(); //waiting state
+
+Thread.Interrupt:
+	- Used to interrupt a thread that is in waiting state.
+	
+		Thread thread = new Thread(DoWork);
+        thread.Start();
+
+        // Let the thread run for a while
+        Thread.Sleep(1000); // waiting state
+
+        // Interrupt the thread
+        thread.Interrupt();
+
+
+Issues with Threads:
+--------------------
+	Race Condition:
+		- multiple threads can access and modify one shared value, basically two threads changing the same value at the same time.
+
+	Deadlock:
+		- Occurs when two or more threads are blocked forever, each waiting on the other to release a resources.
+		- Happens when multiple threads need the same resources
+	
+	** Preventing race condition and deadlocks using joins and locks
+	- waiting on threads can be done with Thread.Join
+	- ** lock: it locks the shared object so that only the executing thread has access to it. Once thread is done it releases the object.
+
+AutoResetEvent:
+	- It can be used to sync communication b/w threads.
+
+	Here is how it works:
+		- Initialization: The AutoResetEvent is initialized in a non-signaled state (false).
+
+		- Main Thread: The main thread does some work and then signals the worker thread using 
+			autoResetEvent.Set(). 
+			This changes the state to signaled (true), allowing the worker thread to proceed.
+
+		- Worker Thread: The worker thread calls autoResetEvent.WaitOne(), causing it to block until it receives a signal. 
+			Once signaled, the worker thread performs its task and then terminates.
+
+Thread performance issues:
+	- starting new thread is costly interms of performance for several reasosns:
+		- memory allocation
+		- operating system overhead (os must manage each thread life cycle, ther operation requires CPU cycles)
+		- thread initialisation, creating thread is not instantaneous ---->
+			it requires allocating resources
+			setting up execution environment
+			notifying scheduler          ---- all these take time
+
+		so the solution is to use the thread pool
+
+ThreadPool:
+	- System.Threading.Threadpool provides pool of worker threads.
+	- Using thread pool instead of creating new thread improves performance by reusing existing threads
+
+	Process:
+		- threadpool receives a task
+		- threadpool allocates a thread
+		- thread executes task
+		- thread return to pool
+
+Synchronisation Mechanisms:
+--------------------------
+	- Synchronization primitives(Mutex, Semaphore, Monitor)
+	- These mechanisms help manage access to shared resources, ensuring data consistency and preventing race conditions
+
+	1. Mutex:
+		- A mutex(short for mutual exclusion) ensures only one thread can acquire a lock at a time
+			
+			Mutex mutext = new Mutex()
+			void Test() {
+				mutext.WaitOne() //acquire the mutext lock
+				try {
+					....
+					....
+				}
+				finally {
+					mutext.ReleaseMutext(); // releases the mutext lock
+				}
+			}
+	
+	2. Semaphore:
+		- A semaphore limits the number of threads that can simultaneously access a resource.
+		
+		It maintains the count of available resources and blocks threads when the count reaches zero.
+
+		Semaphore semaphore = new Semaphore(2,2); //allows 2 threads a time
+		void Test() {
+			semaphore.WaitOne(); //acquire the semaphore
+			try {
+				...
+				...
+			}
+			finally {
+				semaphore.Release(); //release the semaphore
+			}
+		}
+		
+	3. Monitor(lock):
+		- Monitor class provides a mechanism for exclusive access to a resource, similar to using the lock
+		- It ensures that only one thread can execute a critical section of code at a time, similar to using the lock.
+			
+			private static object _lock = new object();
+			void Test() {
+				Monitor.Enter(_lock);
+				try {
+					...
+					...
+				}
+				finallly {
+					Monitor.Exit(_lock);
+				}
+			}
+
+Passing data to thread:
+	- lambda expression are commonly used to intialize threads and pass data to them
+
+		var thread = new Thread(() => DoWork("Hello"))
+		void DoWork(string name){
+			...
+			...
+		}
+
+Thread Priority:
+	- threads can have different priorites, which determines the order of execution
+	- higher priority threads recieve more CPU time, default priority is Normal
+
+	thread.Priority = ThreadPriority.Highest;
+
+	Possible options are:
+	1. Lowest
+	2. BelowNormal
+	3. Normal
+	4. AboveNormal
+	5. Highest
+
+ThreadLocal Storage:
+	- This each thread to have its own unique data, ensure thread safety and preventing data corruption
+
+** threads can be given for easy debugging [ thread.Name = "xyz" ]
+** Don't use Thread.Abort
+** Do use multiple threads for tasks that require different resources and avoid assigning multiple threads to a single resource.
+** Do handle exceptions in threads.
+** Use The System.Threading.ThreadPool to initialise and manage threads
+** Use tasks instead of threads!
+
+Task-based Asynchronous Pattern(TAP):
+	- introduced in C# 5.0
+	- async, await are part of TAP
+
+	async:
+		- used delecare method as asynchronous, means method can perform tasks without blocking the calling thread,
+			allowing other oprtations to run concurrently
+	await:
+		- used to suspend the execution async method until awaited task completes.
+		- makes asynchronous code appear similar to synchronous code
+
+Task Parallel Library(TPL):
+	- TPL is the .Net standard of working with threads and parallelism.
+
+	The main types are:
+		- Task / Task<TResult> an asynchronous operation that can be waited, cancelled and can return a value
+		- TasKFactory provides static methods for creating and starting tasks
+		- The TaskScheduler provides the default thread scheduling operation
+
+		when to use TPL: CPU-bound code
+		Example: Running complex algorithms or processing large data sets in parallel.
+
+Task:
+	- A task is a unit of work that can be executed asynchronously on a separate thread. 
+		It resembles a thread but is actually at a higher level.
+	- It is managed by the Task Scheduler, supports cancellation, continuation, and exception handling.
+
+		Explicitly creating a task using new Task
+		var task = new Task(() =>
+		{
+			PrintPluses(10); // The method delegate to be executed 
+		});
+		
+		Using Task Factory
+		// Using Task Factory 
+		Task.Factory.StartNew(() => DoWork());
+		
+		Using Task.Run, which is a shortcut for calling Task.Factory.StartNew() and calls Unwrap on the result
+		// Create and start the task
+		var task = Task.Run(() =>
+		{
+			DoWork();
+		});
