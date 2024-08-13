@@ -29,7 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Multithreading", "Multithre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multithreading", "..\Multithreading\Multithreading.csproj", "{BF51F195-1410-4472-9DF6-34ABC6945798}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates", "..\Delegates\Delegates.csproj", "{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegates", "..\Delegates\Delegates.csproj", "{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{AD2B085F-2511-405E-A691-4E98BB0FEDF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArthematicOperations", "..\ArthematicOperations\ArthematicOperations.csproj", "{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,14 @@ Global
 		{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD2B085F-2511-405E-A691-4E98BB0FEDF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2B085F-2511-405E-A691-4E98BB0FEDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2B085F-2511-405E-A691-4E98BB0FEDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2B085F-2511-405E-A691-4E98BB0FEDF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

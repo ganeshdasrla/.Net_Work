@@ -18,8 +18,8 @@ Composition:
 ** Use interfaces to define common capabilities and promote polymorphism
 ** Use composition to create flexible and reusable design by combinig objects
 
-- Take example of Flyable class -> with Fly() which inherited from Duck, Eagale Classes --- Inheritance
-- Now class Plane, which need Fly() method, rather inheriting, will cretae object Flyable and use Fly() --- Composition
+- Take example of Flyable/Bird class -> with Fly() and Eat() which inherited from Duck, Eagale Classes --- Inheritance
+- Now take class Plane, which need Fly() method, rather inheriting, will cretae object Flyable/Bird class in it and use Fly() --- Composition
 
 ** when its a [is-a] relation go for Inheritance
 ** when its a [has-a] raltion go for Composition
@@ -64,7 +64,11 @@ Inversion of Control (IOC):
 
 
 Delegates:
-	- Type safe function pointers that allow methods to be passed as parameters
+	- Type safe function pointers that allow methods to be passed as parameters.
+	- A delegate is a type-safe function pointer that hold the reference of a method and then calls the method for execution.
+
+	- The signature of the delegate must match with signatue of the function that the delegate points to, otherwise will get compile time error.
+	- This is the reason delegates are called type-safe functions.
 
 	syntax:
 		public delegate ReturnType DelegateName(ParameterType1 parameter1, ParameterType2 parameter2, ...);
@@ -76,6 +80,7 @@ Multicast Delegates:
 	- This holds references to multiple methods.
 	- When invoked, a multicast delegate calls all the methods it holds in sequence.
 	
+	Note: If we want to call multiple methods using a single delegate the I/O parameters of all those methods must be the same.
 
 Real-World Use Cases:
 	- Delegates are commonly used for event handling in C#
@@ -97,3 +102,14 @@ Events:
 
 Real-world Example: 
 	- Logging system using events to notify different logging mechanisms (console, file, remote server).
+
+What are the advantages of using delegates?
+Answer:
+	Encapsulation of methods: Delegates encapsulate a method call and provide flexibility in invoking methods.
+	Callback mechanisms: Delegates are commonly used for callback methods.
+	Multithreading: Delegates can be used to invoke methods asynchronously in separate threads.
+	Event handling: Delegates are the foundation of event handling in .NET.
+
+Where do you use multicast delegates?
+	- Multicast delegate makes the implementation of the observer design pattern very simple. 
+	- The observer pattern is also called a publish(subject)/subscribe(observers) pattern
