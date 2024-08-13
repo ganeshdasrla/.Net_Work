@@ -1,0 +1,58 @@
+﻿SOLID
+    - SOLID Principles are useful to write easily extendable code and avoid common coding errors
+    - Adhering to these principles can lead to more modular, flexible and maintainable code.
+
+
+1. SRP -- Single Responsibility Principle
+    - A class should have only one reaso to change, menas it should have only one responsibility
+    - this promotes code modularization and makes the code easier to understand and maintain
+    - A class should do only onething, and it should do it well
+
+    - Think of chef who only focuses on cooking, not managing the resturant or delivering the food
+
+    - Before SRP:
+    - This Report class two responsibilites 1. generating report 2. svaing it file -- This voilate SRP
+
+
+2. OCP: Open Closed Principle
+    - Def: A class shpuld be open for extension but closed for modifcations.
+    - This means you can add new features without altering existing code
+
+    - Once class is written it should be closed for modifactions but open for extensions
+
+    - Your smatphone, you didn't open it up to add features, you just download apps to extend its capabilities
+
+
+
+
+3. LSP: Liskov Substitution Principle
+    - LSP states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program
+    - Subclass/Child class can be substituted for thier base/parent class.
+
+    - You should be able to use any subclass where you use its parent class.
+
+    - You have remote control that works all types of TVs, regardless of the brand
+
+    - By adding IFlybale interface, both Bird and Penguin adhere to LSP
+
+    - According to LSP, a dervied class shoul not break the base class's type defination and behaviour, which means objects of a base class shall be replaceable with the objects of its dervide classes without breaking application.
+
+
+4. ISP: Interface Segregation Principle
+    - ISP states that a class should not be forced to implement interfaces it doesn't use.
+    - ISP encourages creation of small and clint specific interfaces
+
+    - A class should n't be forced to implement interfaces it doesn't use
+
+    - You sign up for a music streaming service and only choose the genres you like, not all available genres
+
+
+5  DIP: Dependency Inversion Principle
+    - DIP suugest that high level modules should not depend on low-level modules, but both should depend on abstractions.
+    - Additionally, abstraction should not depend on details, details should depend on abstractions
+
+    - Entities/Classes should depend on abstraction and not on concrete classes.
+
+    - High-level modules should not depend on low-level modules, both should depend on abstractions.
+
+    - Building a LEGO tower, the bricks(high and low-level modules) connect through smallar bricks(abstractions)
