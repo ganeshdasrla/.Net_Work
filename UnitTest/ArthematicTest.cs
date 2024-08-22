@@ -37,5 +37,21 @@ namespace UnitTest
             int sum = arr.Sum(i, j);
             Assert.AreEqual(i + j, sum);
         }
+
+        [Fact]
+        public void PerformAddition_ValidInputs_ReturnsCorrectSum()
+        {
+            // Arrange
+            var mockCalculatorService = new Mock<ICalculatorService>();
+            mockCalculatorService.Setup(service => service.Add(5, 3)).Returns(8);
+    
+            var calculator = new Calculator(mockCalculatorService.Object);
+    
+            // Act
+            int result = calculator.PerformAddition(5, 3);
+    
+            // Assert
+            Assert.Equal(8, result);
+        }
     }
 }
