@@ -49,7 +49,7 @@ Dependency Injection (DI):
 
 		3. method injection
 			- dependencies are passed to a method when it is called.
-			- useful when menthod requires certain dependencies foe specific operation
+			- useful when menthod requires certain dependencies for specific operation
 
 				// Method that requires the email service dependency to be passed
 				public void SendNotification(IEmailService emailService, string recipient, string message)
@@ -60,7 +60,7 @@ Dependency Injection (DI):
 
 Inversion of Control (IOC):
 	- its a design pattern that emphasizes decoupling and shifting control of object creation from class to external entiry, typically IoC container.
-	- so classes become more modular, as they don't need to know how to crate their dependencies
+	- so classes become more modular, as they don't need to know how to create their dependencies
 
 
 Delegates:
