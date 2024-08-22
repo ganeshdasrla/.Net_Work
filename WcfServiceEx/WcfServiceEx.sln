@@ -31,9 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multithreading", "..\Multit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegates", "..\Delegates\Delegates.csproj", "{CA510C3B-A4F2-476B-BCDE-021EFA6D1A54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{AD2B085F-2511-405E-A691-4E98BB0FEDF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{AD2B085F-2511-405E-A691-4E98BB0FEDF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArthematicOperations", "..\ArthematicOperations\ArthematicOperations.csproj", "{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHandsOn", "..\HandsOn\ZHandsOn.csproj", "{BB23EE07-DD3A-45C5-A41B-2059469E234D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70197B6D-234C-45A1-BA3F-1D1A2DD15DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB23EE07-DD3A-45C5-A41B-2059469E234D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB23EE07-DD3A-45C5-A41B-2059469E234D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB23EE07-DD3A-45C5-A41B-2059469E234D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB23EE07-DD3A-45C5-A41B-2059469E234D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

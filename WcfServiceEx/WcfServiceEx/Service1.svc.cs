@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -13,6 +14,11 @@ namespace WcfServiceEx
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        public Stream GetStream()
+        {
+            throw new NotImplementedException();
+        }
+
         public void WaitForSomeTime(int seconds)
         {
             Thread.Sleep(seconds);

@@ -7,10 +7,66 @@ using System.Threading.Tasks;
 
 namespace Multithreading
 {
+    public class EvenOddPrinter
+    {
+        private int maxNumber;
+        private int currentNumber = 1;
+
+        private AutoResetEvent oddEvent = new AutoResetEvent(true);
+        private AutoResetEvent evenEvent = new AutoResetEvent(false);
+
+        public EvenOddPrinter(int maxNumber)
+        {
+            this.maxNumber = maxNumber;
+        }
+
+        public void PrintOddNumbers()
+        {
+            while (currentNumber <= maxNumber)
+            {
+                oddEvent.WaitOne(); // Wait for the oddEvent signal
+                if (currentNumber <= maxNumber && currentNumber % 2 != 0)
+                {
+                    Console.WriteLine(currentNumber);
+                    currentNumber++;
+                }
+                evenEvent.Set(); // Signal the evenEvent
+            }
+        }
+
+        public void PrintEvenNumbers()
+        {
+            while (currentNumber <= maxNumber)
+            {
+                evenEvent.WaitOne(); // Wait for the evenEvent signal
+                if (currentNumber <= maxNumber && currentNumber % 2 == 0)
+                {
+                    Console.WriteLine(currentNumber);
+                    currentNumber++;
+                }
+                oddEvent.Set(); // Signal the oddEvent
+            }
+        }
+    }
+
+
     internal class Program
     {
-        void Main(string[] args)
+        static void Main(string[] args)
         {
+            int maxNumber = 7;
+            EvenOddPrinter printer = new EvenOddPrinter(maxNumber);
+
+            Thread oddThread = new Thread(printer.PrintOddNumbers);
+            Thread evenThread = new Thread(printer.PrintEvenNumbers);
+
+            oddThread.Start();
+            evenThread.Start();
+
+            oddThread.Join();
+            evenThread.Join();
+
+
             Console.WriteLine("Cores count: " + Environment.ProcessorCount);
 
             //A thread needs an operation(method delegate) to be instantiated
@@ -41,7 +97,7 @@ namespace Multithreading
             Console.ReadKey();
         }
 
-        private void Operation()
+        private static void Operation()
         {
             Console.WriteLine("Hello from thread");
         }

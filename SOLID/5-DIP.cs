@@ -102,3 +102,87 @@ namespace SOLID
     //According to DIP, do not write any tightly coupled code because that is nightmare to maintain when the application is growing bigger and bigger.
     //If a class depends on another class, then we need to change one class if something changes in that dependent class, we should always try to write loosely coupled classes.
 }
+
+
+// Low-level module
+public class PaymentServicee
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing payment of {amount:C}");
+    }
+}
+
+// High-level module
+public class OrderProcessore
+{
+    private PaymentServicee _paymentService;
+
+    public OrderProcessore()
+    {
+        _paymentService = new PaymentServicee();
+    }
+
+    public void ProcessOrder(decimal amount)
+    {
+        // Process order and payment
+        Console.WriteLine("Processing order...");
+        _paymentService.ProcessPayment(amount);
+    }
+}
+//Issues with this Design
+//Tight Coupling: OrderProcessor is tightly coupled to PaymentService. If you need to change PaymentService or use a different payment method, you have to modify OrderProcessor.
+//Hard to Test: It's difficult to test OrderProcessor in isolation because it directly depends on a concrete implementation of PaymentService.
+
+
+//Define an interface IPaymentService that abstracts the payment processing functionality.
+public interface IPaymentService
+{
+    void ProcessPayment(decimal amount);
+}
+
+//Implement the IPaymentService interface in the PaymentService class.
+
+// Low-level module
+public class PaymentService : IPaymentService
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing payment of {amount:C}");
+    }
+}
+
+// High-level module
+public class OrderProcessor
+{
+    private readonly IPaymentService _paymentService;
+
+    public OrderProcessor(IPaymentService paymentService)
+    {
+        _paymentService = paymentService;
+    }
+
+    public void ProcessOrder(decimal amount)
+    {
+        // Process order and payment
+        Console.WriteLine("Processing order...");
+        _paymentService.ProcessPayment(amount);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        IPaymentService paymentService = new PaymentService();
+        OrderProcessor orderProcessor = new OrderProcessor(paymentService);
+
+        orderProcessor.ProcessOrder(100);
+    }
+}
+
+//Benefits of the Refactored Design
+//Looser Coupling: OrderProcessor no longer depends on a concrete implementation of PaymentService.
+//It depends on the abstraction IPaymentService, which can be easily swapped out for another implementation if needed.
+//Easier Testing: You can easily mock or stub IPaymentService in unit tests for OrderProcessor.
+//Flexible and Maintainable: Adding new payment services or modifying existing ones does not require changes to OrderProcessor.

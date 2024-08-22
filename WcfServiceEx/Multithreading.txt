@@ -59,14 +59,14 @@ Performance:
 	- speed-up the execution by running tasks in parallel.
 
 Responsiveness:
-	- By running multiple processes at the same time, when use clicks to retrive data, the whole app remains responsive
+	- By running multiple processes at the same time, when user clicks to retrive data, the whole app remains responsive
 		even though other thread is busy fetching the data.
 
 Scalability:
 	- Handling more and more requets is made easy by processing them simultaneously using different threads for each task.
 
 Thread Lifecycle:
-	- Thread crated
+	- Thread created
 	- Thread starts
 	- Thread completes method
 	- Thread automatically ends
@@ -122,7 +122,7 @@ AutoResetEvent:
 Thread performance issues:
 	- starting new thread is costly interms of performance for several reasosns:
 		- memory allocation
-		- operating system overhead (os must manage each thread life cycle, ther operation requires CPU cycles)
+		- operating system overhead (os must manage each thread life cycle, their operation requires CPU cycles)
 		- thread initialisation, creating thread is not instantaneous ---->
 			it requires allocating resources
 			setting up execution environment
@@ -218,7 +218,7 @@ Thread Priority:
 ThreadLocal Storage:
 	- This each thread to have its own unique data, ensure thread safety and preventing data corruption
 
-** threads can be given for easy debugging [ thread.Name = "xyz" ]
+** threads can be given name for easy debugging [ thread.Name = "xyz" ]
 ** Don't use Thread.Abort
 ** Do use multiple threads for tasks that require different resources and avoid assigning multiple threads to a single resource.
 ** Do handle exceptions in threads.
@@ -233,7 +233,7 @@ Task-based Asynchronous Pattern(TAP):
 		- used delecare method as asynchronous, means method can perform tasks without blocking the calling thread,
 			allowing other oprtations to run concurrently
 	await:
-		- used to suspend the execution async method until awaited task completes.
+		- used to suspend/pause the execution of async method until awaited task completes.
 		- makes asynchronous code appear similar to synchronous code
 
 Task Parallel Library(TPL):
