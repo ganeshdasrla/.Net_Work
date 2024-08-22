@@ -30,5 +30,25 @@ public class PrintNumbersWithLoop
                 Console.WriteLine(oddNumbers[i]);
             }
         }
+
+
+
+
+        ////////////////////////
+        //othe way with one loop
+        int maxLength = Math.Max(evenNumbers.Length, oddNumbers.Length);
+
+        for (int i = 0; i < maxLength; i++)
+        {
+            if (i < oddNumbers.Length)
+            {
+                Console.WriteLine(oddNumbers[i]);
+            }
+
+            if (i < evenNumbers.Length)
+            {
+                Console.WriteLine(evenNumbers[i]);
+            }
+        }
     }
 }
